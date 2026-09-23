@@ -1,0 +1,17 @@
+services:
+  oracle:
+    image: gvenzl/oracle-xe:18-slim
+
+    environment:
+      ORACLE_RANDOM_PASSWORD: false
+      APP_USER: my_user
+      APP_USER_PASSWORD: localtest
+
+    ports:
+      - "1521:1521"
+
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
