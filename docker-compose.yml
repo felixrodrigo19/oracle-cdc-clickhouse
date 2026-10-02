@@ -3,12 +3,15 @@ services:
     image: gvenzl/oracle-xe:18-slim
 
     environment:
-      ORACLE_RANDOM_PASSWORD: false
+      ORACLE_PASSWORD: localtest
       APP_USER: my_user
       APP_USER_PASSWORD: localtest
 
     ports:
       - "1521:1521"
+
+    volumes:
+      - ./oracle/init:/container-entrypoint-initdb.d
 
     healthcheck:
       test: ["CMD", "healthcheck.sh"]
